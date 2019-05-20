@@ -1,0 +1,27 @@
+{
+  "name": "5x3-github-user-info",
+  "version": "1.0.0",
+  "description": "Get followers (5 deep max * 3 deep max) from an initial github user name.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neillindberg/5x3-github-user-info.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neillindberg/5x3-github-user-info/issues"
+  },
+  "homepage": "https://github.com/neillindberg/5x3-github-user-info#readme",
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.0",
+    "http-codes": "^1.0.0",
+    "node-fetch": "^2.6.0",
+    "octicons": "^8.5.0"
+  }
+}
