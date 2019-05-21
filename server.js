@@ -11,23 +11,26 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-// https://api.github.com/users/<username>/following
 // https://api.github.com/users/<username>/followers
 
 const getFollowersUrl = username => `https://api.github.com/users/${username}/followers`;
 
 const fetchWithDepth = async (username, depth = 3) => {
     const url = getFollowersUrl(username);
-    console.log('^^^^^^^^^^^URL^^^^^^^^^^^', url);
     return await fetch(url)
         .then(fetchResponse => fetchResponse.json())
         .then(jsonResponse => {
+            depth--;
             return {
                 numFollowers: jsonResponse.length,
                 firstFiveFollowers: jsonResponse && jsonResponse.slice(0, 5).map(({ login }) => {
-                    return depth > 0 ? {[login]: fetchWithDepth(login, depth--)} : login;
+                    return depth > 0 ? {[login]: fetchWithDepth(login, depth)} : login;
                 }) || []
             };
+        })
+        .catch(err => {
+            console.log('Error fetching: ', url);
+            console.log(err);
         });
 };
 // Get first 5 followers, 3 levels deep...
